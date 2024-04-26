@@ -10,6 +10,16 @@ const meta: Meta<typeof AdditionalInfo> = {
 export default meta;
 type Story = StoryObj<typeof AdditionalInfo>;
 
+export const LicenseName: Story = {
+  name: 'License Name',
+  args: {
+    id: 'id',
+    license: {
+      name: 'MIT License',
+    },
+  },
+};
+
 export const LicenseNameAndURL: Story = {
   name: 'License Name with URL',
   args: {

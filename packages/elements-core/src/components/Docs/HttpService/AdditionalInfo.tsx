@@ -24,8 +24,9 @@ export const AdditionalInfo: React.FC<AdditionalInfoProps> = ({ id, termsOfServi
       : '';
 
   //use spdx to look up url for license identifier if available
-  const licenseUrl = license?.url || `https://spdx.org/licenses/${license?.identifier}.html`;
-  const licenseLink = license?.name ? `[${license.name}](${licenseUrl})` : `[${license?.identifier}](${licenseUrl})`;
+  const licenseUrl = license?.url || (license?.identifier && `https://spdx.org/licenses/${license?.identifier}.html`);
+  const licenseName = license?.name || `${license?.identifier} License`;
+  const licenseLink = license?.name && licenseUrl ? `[${licenseName}](${licenseUrl})` : `${licenseName}`;
   const tosLink = termsOfService ? `[Terms of Service](${termsOfService})` : '';
 
   return contactLink || licenseLink || tosLink ? (
