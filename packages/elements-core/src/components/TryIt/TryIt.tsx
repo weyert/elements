@@ -37,6 +37,11 @@ export interface TryItProps {
   httpOperation: IHttpEndpointOperation;
 
   /**
+   * Hides the Try It panel
+   */
+  hideTryIt?: boolean;
+
+  /**
    * The base URL of the prism mock server to redirect traffic to.
    *
    * While non-prism based mocks may work to some limited extent, they might not understand the Prefer header as prism does.
@@ -77,6 +82,7 @@ export const TryIt: React.FC<TryItProps> = ({
   mockUrl,
   onRequestChange,
   requestBodyIndex,
+  hideTryIt = false,
   embeddedInMd = false,
   tryItCredentialsPolicy,
   corsProxy,
@@ -341,7 +347,7 @@ export const TryIt: React.FC<TryItProps> = ({
 
   return (
     <Box rounded="lg" overflowY="hidden">
-      {tryItPanelElem}
+      {hideTryIt ? null : tryItPanelElem}
       {requestData && embeddedInMd && (
         <RequestSamples request={requestData} customCodeSamples={customCodeSamples} embeddedInMd />
       )}

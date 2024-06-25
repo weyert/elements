@@ -137,6 +137,7 @@ export const RequestSamples = memo<RequestSamplesProps>(({ request, embeddedInMd
         onPress: hasLibraries
           ? undefined
           : () => {
+              console.log(`RequestSamplesMenuItems.onPress() called`);
               setSelectedLanguage(languageConfig.httpSnippetLanguage);
               setSelectedLibrary('');
             },
@@ -148,6 +149,7 @@ export const RequestSamples = memo<RequestSamplesProps>(({ request, embeddedInMd
                 selectedLanguage === languageConfig.httpSnippetLanguage &&
                 selectedLibrary === libraryConfig.httpSnippetLibrary,
               onPress: () => {
+                console.log(`RequestSamplesMenuItems.onPress() called`);
                 setSelectedLanguage(languageConfig.httpSnippetLanguage);
                 setSelectedLibrary(libraryConfig.httpSnippetLibrary);
               },
