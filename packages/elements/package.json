@@ -20,12 +20,18 @@
   "main": "./dist/index.js",
   "module": "./dist/index.esm.js",
   "exports": {
+    "./package.json": "./package.json",
     "./styles.min.css": "./styles.min.css",
     "./web-components.min.js": "./web-components.min.js",
     ".": {
-      "types": "./index.d.ts",
-      "require": "./dist/index.js",
-      "import": "./dist/index.mjs"
+      "import": {
+        "types": "./index.d.ts",
+        "default": "./index.esm.js"
+      },
+      "require": {
+        "types": "./index.d.ts",
+        "default": "./index.js"
+      }
     }
   },
   "files": [
