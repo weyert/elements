@@ -30,6 +30,7 @@ export type TableOfContentsGroup = {
   title: string;
   items: TableOfContentsGroupItem[];
   itemsType?: 'article' | 'http_operation' | 'http_webhook' | 'model';
+  itemsIcon?: string | React.ReactNode;
 };
 
 export type TableOfContentsExternalLink = {
@@ -44,6 +45,7 @@ export type TableOfContentsNode<
   slug: string;
   title: string;
   type: T;
+  itemsIcon?: string | React.ReactNode;
   meta: string;
   version?: string;
 };

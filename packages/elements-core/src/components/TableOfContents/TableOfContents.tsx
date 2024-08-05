@@ -205,7 +205,7 @@ const Group = React.memo<{
   isInResponsiveMode?: boolean;
   makeSlugAbsoluteRoute?: boolean;
   onLinkClick?(): void;
-}>(({ depth, item, maxDepthOpenByDefault, isInResponsiveMode, makeSlugAbsoluteRoute, onLinkClick = () => {} }) => {
+}>(({ depth, item, maxDepthOpenByDefault, isInResponsiveMode, makeSlugAbsoluteRoute, onLinkClick = () => { } }) => {
   const activeId = React.useContext(ActiveIdContext);
   const [isOpen, setIsOpen] = React.useState(() => isGroupOpenByDefault(depth, item, activeId, maxDepthOpenByDefault));
   const hasActive = !!activeId && hasActiveItem(item.items, activeId);
@@ -363,7 +363,7 @@ const Node = React.memo<{
   onClick?: (e: React.MouseEvent, forceOpen?: boolean) => void;
   onLinkClick?(): void;
 }>(
-  ({ item, depth, meta, showAsActive, isInResponsiveMode, makeSlugAbsoluteRoute, onClick, onLinkClick = () => {} }) => {
+  ({ item, depth, meta, showAsActive, isInResponsiveMode, makeSlugAbsoluteRoute, onClick, onLinkClick = () => { } }) => {
     const activeId = React.useContext(ActiveIdContext);
     const isActive = activeId === item.slug || activeId === item.id;
     const LinkComponent = React.useContext(LinkContext);
@@ -397,9 +397,11 @@ const Node = React.memo<{
           depth={depth}
           title={item.title}
           icon={
-            NODE_TYPE_TITLE_ICON[item.type] && (
-              <Box as={Icon} color={NODE_TYPE_ICON_COLOR[item.type]} icon={NODE_TYPE_TITLE_ICON[item.type]} />
-            )
+            item.itemsIcon
+              ? (item.itemsIcon as React.ReactElement<typeof Icon>)
+              : NODE_TYPE_TITLE_ICON[item.type] && (
+                <Box as={Icon} color={NODE_TYPE_ICON_COLOR[item.type]} icon={NODE_TYPE_TITLE_ICON[item.type]} />
+              )
           }
           meta={meta}
           isInResponsiveMode={isInResponsiveMode}
